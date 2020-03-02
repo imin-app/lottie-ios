@@ -71,47 +71,47 @@ public enum BlendMode: Int, Codable {
 /**
  A base top container for shapes, images, and other view objects.
  */
-class LayerModel: Codable {
+public class LayerModel: Codable {
   
   /// The readable name of the layer
-  let name: String
+  var name: String
   
   /// The index of the layer
-  let index: Int
+  var index: Int
   
   /// The type of the layer.
-  let type: LayerType
+  var type: LayerType
   
   /// The coordinate space
-  let coordinateSpace: CoordinateSpace
+  var coordinateSpace: CoordinateSpace
   
   /// The in time of the layer in frames.
-  let inFrame: Double
+  var inFrame: Double
   /// The out time of the layer in frames.
-  let outFrame: Double
+  var outFrame: Double
   
   /// The start time of the layer in frames.
-  let startTime: Double
+  var startTime: Double
   
   /// The transform of the layer
-  let transform: Transform
+  var transform: Transform
   
   /// The index of the parent layer, if applicable.
-  let parent: Int?
+  var parent: Int?
   
   /// The blending mode for the layer
-  let blendMode: BlendMode
+  var blendMode: BlendMode
   
   /// An array of masks for the layer.
-  let masks: [Mask]?
+  var masks: [Mask]?
   
   /// A number that stretches time by a multiplier
-  let timeStretch: Double
+  var timeStretch: Double
   
   /// The type of matte if any.
-  let matte: MatteType?
+  var matte: MatteType?
   
-  let hidden: Bool
+  var hidden: Bool
   
   private enum CodingKeys : String, CodingKey {
     case name = "nm"
@@ -130,7 +130,7 @@ class LayerModel: Codable {
     case hidden = "hd"
   }
   
-  required init(from decoder: Decoder) throws {
+  required public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: LayerModel.CodingKeys.self)
     self.name = try container.decodeIfPresent(String.self, forKey: .name) ?? "Layer"
     self.index = try container.decode(Int.self, forKey: .index)

@@ -42,7 +42,7 @@ public final class Animation: Codable {
   let height: Int
   
   /// The list of animation layers
-  let layers: [LayerModel]
+  public var layers: [LayerModel]
   
   /// The list of glyphs used for text rendering
   let glyphs: [Glyph]?
@@ -51,7 +51,7 @@ public final class Animation: Codable {
   let fonts: FontList?
   
   /// Asset Library
-  let assetLibrary: AssetLibrary?
+  public var assetLibrary: AssetLibrary?
   
   /// Markers
   let markers: [Marker]?
