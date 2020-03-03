@@ -74,44 +74,44 @@ public enum BlendMode: Int, Codable {
 public class LayerModel: Codable {
   
   /// The readable name of the layer
-  var name: String
+  public var name: String
   
   /// The index of the layer
-  var index: Int
+  public var index: Int
   
   /// The type of the layer.
-  var type: LayerType
+  public var type: LayerType
   
   /// The coordinate space
-  var coordinateSpace: CoordinateSpace
+  public var coordinateSpace: CoordinateSpace
   
   /// The in time of the layer in frames.
-  var inFrame: Double
+  public var inFrame: Double
   /// The out time of the layer in frames.
-  var outFrame: Double
+  public var outFrame: Double
   
   /// The start time of the layer in frames.
-  var startTime: Double
+  public var startTime: Double
   
   /// The transform of the layer
-  var transform: Transform
+  public var transform: Transform
   
   /// The index of the parent layer, if applicable.
-  var parent: Int?
+  public var parent: Int?
   
   /// The blending mode for the layer
-  var blendMode: BlendMode
+  public var blendMode: BlendMode
   
   /// An array of masks for the layer.
-  var masks: [Mask]?
+  public var masks: [Mask]?
   
   /// A number that stretches time by a multiplier
-  var timeStretch: Double
+  public var timeStretch: Double
   
   /// The type of matte if any.
-  var matte: MatteType?
+  public var matte: MatteType?
   
-  var hidden: Bool
+  public var hidden: Bool
   
   private enum CodingKeys : String, CodingKey {
     case name = "nm"
