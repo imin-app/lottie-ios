@@ -62,7 +62,23 @@ public final class Animation: Codable {
     guard let markers = markers else { return [] }
     return markers.map { $0.name }
   }
-  
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(version, forKey: .version)
+        try container.encode(type, forKey: .type)
+        try container.encode(startFrame, forKey: .startFrame)
+        try container.encode(endFrame, forKey: .endFrame)
+        try container.encode(framerate, forKey: .framerate)
+        try container.encode(width, forKey: .width)
+        try container.encode(height, forKey: .height)
+        try container.encode(layers, forKey: .layers)
+        try container.encode(glyphs, forKey: .glyphs)
+        try container.encode(fonts, forKey: .fonts)
+        try container.encode(assetLibrary, forKey: .assetLibrary)
+        try container.encode(markers, forKey: .markers)
+    }
+    
   enum CodingKeys : String, CodingKey {
     case version = "v"
     case type = "ddd"
@@ -103,5 +119,6 @@ public final class Animation: Codable {
       self.markerMap = nil
     }
   }
+
 
 }
