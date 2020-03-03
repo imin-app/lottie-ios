@@ -15,7 +15,7 @@ public final class AssetLibrary: Codable {
   var imageAssets: [String : ImageAsset]
   var precompAssets: [String : PrecompAsset]
   
-  required public init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
     var container = try decoder.unkeyedContainer()
     var containerForKeys = container
     
@@ -41,7 +41,7 @@ public final class AssetLibrary: Codable {
     self.imageAssets = imageAssets
   }
   
-  public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
     var container = encoder.unkeyedContainer()
     try container.encode(contentsOf: Array(assets.values))
   }
