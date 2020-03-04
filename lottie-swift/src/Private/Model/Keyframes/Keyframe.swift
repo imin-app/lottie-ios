@@ -12,23 +12,23 @@ import CoreGraphics
  Keyframe represents a point in time and is the container for datatypes.
  Note: This is a parent class and should not be used directly.
  */
-struct Keyframe<T: Interpolatable> {
+public struct Keyframe<T: Interpolatable> {
   
   /// The value of the keyframe
-  let value: T
+  public var value: T
   /// The time in frames of the keyframe.
-  let time: CGFloat
+  public var time: CGFloat
   /// A hold keyframe freezes interpolation until the next keyframe that is not a hold.
-  let isHold: Bool
+  public var isHold: Bool
   /// The in tangent for the time interpolation curve.
-  let inTangent: Vector2D?
+  public var inTangent: Vector2D?
   /// The out tangent for the time interpolation curve.
-  let outTangent: Vector2D?
+  public var outTangent: Vector2D?
   
   /// The spacial in tangent of the vector.
-  let spatialInTangent: Vector3D?
+  public var spatialInTangent: Vector3D?
   /// The spacial out tangent of the vector.
-  let spatialOutTangent: Vector3D?
+  public var spatialOutTangent: Vector3D?
   
   /// Initialize a value-only keyframe with no time data.
   init(_ value: T,
@@ -69,26 +69,26 @@ struct Keyframe<T: Interpolatable> {
  type of keyframea and also the version of the JSON. By parsing the raw data
  we can reconfigure it into a constant format.
  */
-struct KeyframeData<T: Codable>: Codable {
+public struct KeyframeData<T: Codable>: Codable {
   
   /// The start value of the keyframe
-  let startValue: T?
+  public var startValue: T?
   /// The End value of the keyframe. Note: Newer versions animation json do not have this field.
-  let endValue: T?
+  public var endValue: T?
   /// The time in frames of the keyframe.
-  let time: Double?
+  public var time: Double?
   /// A hold keyframe freezes interpolation until the next keyframe that is not a hold.
-  let hold: Int?
+  public var hold: Int?
   
   /// The in tangent for the time interpolation curve.
-  let inTangent: Vector2D?
+  public var inTangent: Vector2D?
   /// The out tangent for the time interpolation curve.
-  let outTangent: Vector2D?
+  public var outTangent: Vector2D?
   
   /// The spacial in tangent of the vector.
-  let spatialInTangent: Vector3D?
+  public var spatialInTangent: Vector3D?
   /// The spacial out tangent of the vector.
-  let spatialOutTangent:Vector3D?
+  public var spatialOutTangent:Vector3D?
   
   init(startValue: T?,
        endValue: T?,

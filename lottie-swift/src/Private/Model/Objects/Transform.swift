@@ -11,28 +11,28 @@ import Foundation
 public final class Transform: Codable {
   
   /// The anchor point of the transform.
-  let anchorPoint: KeyframeGroup<Vector3D>
+  public var anchorPoint: KeyframeGroup<Vector3D>
   
   /// The position of the transform. This is nil if the position data was split.
-  let position: KeyframeGroup<Vector3D>?
+  public var position: KeyframeGroup<Vector3D>?
   
   /// The positionX of the transform. This is nil if the position property is set.
-  let positionX: KeyframeGroup<Vector1D>?
+  public var positionX: KeyframeGroup<Vector1D>?
   
   /// The positionY of the transform. This is nil if the position property is set.
-  let positionY: KeyframeGroup<Vector1D>?
+  public var positionY: KeyframeGroup<Vector1D>?
   
   /// The scale of the transform
-  let scale: KeyframeGroup<Vector3D>
+  public var scale: KeyframeGroup<Vector3D>
   
   /// The rotation of the transform. Note: This is single dimensional rotation.
-  let rotation: KeyframeGroup<Vector1D>
+  public var rotation: KeyframeGroup<Vector1D>
   
   /// The opacity of the transform.
-  let opacity: KeyframeGroup<Vector1D>
+  public var opacity: KeyframeGroup<Vector1D>
   
   /// Should always be nil.
-  let rotationZ: KeyframeGroup<Vector1D>?
+  public var rotationZ: KeyframeGroup<Vector1D>?
   
   enum CodingKeys : String, CodingKey {
     case anchorPoint = "a"

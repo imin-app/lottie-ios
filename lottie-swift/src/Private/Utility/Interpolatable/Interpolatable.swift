@@ -8,7 +8,7 @@
 import Foundation
 import CoreGraphics
 
-protocol Interpolatable {
+public protocol Interpolatable {
 
   func interpolateTo(_ to: Self,
                      amount: CGFloat,

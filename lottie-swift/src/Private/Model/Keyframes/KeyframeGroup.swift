@@ -15,9 +15,9 @@ import Foundation
  This helper object is needed to properly decode the json.
  */
 
-final class KeyframeGroup<T>: Codable where T: Codable, T: Interpolatable {
+public final class KeyframeGroup<T>: Codable where T: Codable, T: Interpolatable {
   
-  let keyframes: [Keyframe<T>]
+  public let keyframes: [Keyframe<T>]
   
   private enum KeyframeWrapperKey: String, CodingKey {
     case keyframeData = "k"
@@ -31,7 +31,7 @@ final class KeyframeGroup<T>: Codable where T: Codable, T: Interpolatable {
     self.keyframes = [Keyframe(value)]
   }
 
-  required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: KeyframeWrapperKey.self)
     
     if let keyframeData: T = try? container.decode(T.self, forKey: .keyframeData) {
@@ -80,7 +80,7 @@ final class KeyframeGroup<T>: Codable where T: Codable, T: Interpolatable {
     }
   }
   
-  func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: KeyframeWrapperKey.self)
     
     if keyframes.count == 1 {
