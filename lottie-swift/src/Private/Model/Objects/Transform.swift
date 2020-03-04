@@ -8,7 +8,7 @@
 import Foundation
 
 /// The animatable transform for a layer. Controls position, rotation, scale, and opacity.
-final class Transform: Codable {
+public final class Transform: Codable {
   
   /// The anchor point of the transform.
   let anchorPoint: KeyframeGroup<Vector3D>
@@ -52,7 +52,7 @@ final class Transform: Codable {
   }
   
   
-  required init(from decoder: Decoder) throws {
+  required public init(from decoder: Decoder) throws {
     /**
      This manual override of decode is required because we want to throw an error
      in the case that there is not position data.

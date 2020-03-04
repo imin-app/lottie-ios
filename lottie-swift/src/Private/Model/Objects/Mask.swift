@@ -17,7 +17,7 @@ enum MaskMode: String, Codable {
   case none = "n"
 }
 
-final class Mask: Codable {
+public final class Mask: Codable {
   
   let mode: MaskMode
   
@@ -37,7 +37,7 @@ final class Mask: Codable {
     case expansion = "x"
   }
   
-  required init(from decoder: Decoder) throws {
+  required public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: Mask.CodingKeys.self)
     self.mode = try container.decodeIfPresent(MaskMode.self, forKey: .mode) ?? .add
     self.opacity = try container.decodeIfPresent(KeyframeGroup<Vector1D>.self, forKey: .opacity) ?? KeyframeGroup(Vector1D(100))
