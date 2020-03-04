@@ -8,19 +8,19 @@
 import Foundation
 
 /// A layer that holds another animation composition.
-final class PreCompLayerModel: LayerModel {
+public final class PreCompLayerModel: LayerModel {
   
   /// The reference ID of the precomp.
-  let referenceID: String
+  public var referenceID: String
   
   /// A value that remaps time over time.
   let timeRemapping: KeyframeGroup<Vector1D>?
   
   /// Precomp Width
-  let width: Double
+  public var width: Double
   
   /// Precomp Height
-  let height: Double
+  public var height: Double
   
   private enum CodingKeys : String, CodingKey {
     case referenceID = "refId"
@@ -38,7 +38,7 @@ final class PreCompLayerModel: LayerModel {
     try super.init(from: decoder)
   }
   
-  override func encode(to encoder: Encoder) throws {
+  override public func encode(to encoder: Encoder) throws {
     try super.encode(to: encoder)
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(referenceID, forKey: .referenceID)
