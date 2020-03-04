@@ -24,9 +24,9 @@ public struct Vector1D {
  */
 public struct Vector3D {
   
-  var x: Double
-  var y: Double
-  var z: Double
+  public var x: Double
+  public var y: Double
+  public var z: Double
   
   public init(x: Double, y: Double, z: Double) {
     self.x = x

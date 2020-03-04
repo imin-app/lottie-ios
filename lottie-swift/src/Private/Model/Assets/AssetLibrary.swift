@@ -10,10 +10,10 @@ import Foundation
 public final class AssetLibrary: Codable {
   
   /// The Assets
-  var assets: [String : Asset]
+  public var assets: [String : Asset]
   
-  var imageAssets: [String : ImageAsset]
-  var precompAssets: [String : PrecompAsset]
+  public var imageAssets: [String : ImageAsset]
+  public var precompAssets: [String : PrecompAsset]
   
     required public init(from decoder: Decoder) throws {
     var container = try decoder.unkeyedContainer()
