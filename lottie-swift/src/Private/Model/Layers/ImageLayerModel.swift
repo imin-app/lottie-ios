@@ -8,10 +8,10 @@
 import Foundation
 
 /// A layer that holds an image.
-final class ImageLayerModel: LayerModel {
+public final class ImageLayerModel: LayerModel {
   
   /// The reference ID of the image.
-  let referenceID: String
+  public var referenceID: String
   
   private enum CodingKeys : String, CodingKey {
     case referenceID = "refId"
@@ -23,7 +23,7 @@ final class ImageLayerModel: LayerModel {
     try super.init(from: decoder)
   }
   
-  override func encode(to encoder: Encoder) throws {
+  override public func encode(to encoder: Encoder) throws {
     try super.encode(to: encoder)
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(referenceID, forKey: .referenceID)

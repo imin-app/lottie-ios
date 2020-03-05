@@ -8,10 +8,10 @@
 import Foundation
 
 /// A layer that holds text.
-final class TextLayerModel: LayerModel {
+public final class TextLayerModel: LayerModel {
 
   /// The text for the layer
-  let text: KeyframeGroup<TextDocument>
+  public var text: KeyframeGroup<TextDocument>
   
   /// Text animators
   let animators: [TextAnimator]
@@ -33,7 +33,7 @@ final class TextLayerModel: LayerModel {
     try super.init(from: decoder)
   }
   
-  override func encode(to encoder: Encoder) throws {
+  override public func encode(to encoder: Encoder) throws {
     try super.encode(to: encoder)
     var container = encoder.container(keyedBy: CodingKeys.self)
     var textContainer = container.nestedContainer(keyedBy: TextCodingKeys.self, forKey: .textGroup)

@@ -46,7 +46,7 @@ extension ShapeType: ClassFamily {
   }
 }
 
-enum ShapeType: String, Codable {
+public enum ShapeType: String, Codable {
   case ellipse = "el"
   case fill = "fl"
   case gradientFill = "gf"
@@ -69,15 +69,15 @@ enum ShapeType: String, Codable {
 }
 
 /// An item belonging to a Shape Layer
-class ShapeItem: Codable {
+public class ShapeItem: Codable {
   
   /// The name of the shape
-  let name: String
+  public var name: String
   
   /// The type of shape
-  let type: ShapeType
+  public var type: ShapeType
   
-  let hidden: Bool
+  public var hidden: Bool
   
   private enum CodingKeys : String, CodingKey {
     case name = "nm"
@@ -85,7 +85,7 @@ class ShapeItem: Codable {
     case hidden = "hd"
   }
   
-  required init(from decoder: Decoder) throws {
+  required public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: ShapeItem.CodingKeys.self)
     self.name = try container.decodeIfPresent(String.self, forKey: .name) ?? "Layer"
     self.type = try container.decode(ShapeType.self, forKey: .type)

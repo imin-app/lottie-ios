@@ -8,16 +8,16 @@
 import Foundation
 
 /// A layer that holds a solid color.
-final class SolidLayerModel: LayerModel {
+public final class SolidLayerModel: LayerModel {
   
   /// The color of the solid in Hex // Change to value provider.
-  let colorHex: String
+  public var colorHex: String
   
   /// The Width of the color layer
-  let width: Double
+  public var width: Double
   
   /// The height of the color layer
-  let height: Double
+  public var height: Double
   
   private enum CodingKeys : String, CodingKey {
     case colorHex = "sc"
@@ -33,7 +33,7 @@ final class SolidLayerModel: LayerModel {
     try super.init(from: decoder)
   }
   
-  override func encode(to encoder: Encoder) throws {
+  override public func encode(to encoder: Encoder) throws {
     try super.encode(to: encoder)
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(colorHex, forKey: .colorHex)

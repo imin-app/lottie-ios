@@ -150,7 +150,7 @@ extension BezierPath: Interpolatable {
 
 extension TextDocument: Interpolatable {
   
-  func interpolateTo(_ to: TextDocument, amount: CGFloat, spatialOutTangent: CGPoint?, spatialInTangent: CGPoint?) -> TextDocument {
+  public func interpolateTo(_ to: TextDocument, amount: CGFloat, spatialOutTangent: CGPoint?, spatialInTangent: CGPoint?) -> TextDocument {
     if amount == 1 {
       return to
     }
