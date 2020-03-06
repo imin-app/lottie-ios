@@ -17,7 +17,7 @@ import Foundation
 
 public final class KeyframeGroup<T>: Codable where T: Codable, T: Interpolatable {
   
-  public let keyframes: [Keyframe<T>]
+  public var keyframes: [Keyframe<T>]
   
   private enum KeyframeWrapperKey: String, CodingKey {
     case keyframeData = "k"
