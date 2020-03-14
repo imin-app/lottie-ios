@@ -13,7 +13,7 @@ public struct Vector1D {
     self.value = value
   }
   
-  public let value: Double
+  public var value: Double
   
 }
 
