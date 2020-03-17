@@ -17,7 +17,7 @@ import QuartzCore
 public final class AnimationContainer: CALayer {
   
   /// The animatable Current Frame Property
-  @NSManaged var currentFrame: CGFloat
+  @NSManaged public var currentFrame: CGFloat
   
   public var imageProvider: AnimationImageProvider {
     get {
