@@ -9,7 +9,7 @@ import Foundation
 import QuartzCore
 
 /// Protocol that provides keypath search functionality. Returns all node properties associated with a keypath.
-protocol KeypathSearchable {
+public protocol KeypathSearchable {
   
   /// The name of the Keypath
   var keypathName: String { get }

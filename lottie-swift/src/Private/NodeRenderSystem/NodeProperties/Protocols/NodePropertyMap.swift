@@ -8,7 +8,7 @@
 import Foundation
 import QuartzCore
 
-protocol NodePropertyMap {
+public protocol NodePropertyMap {
   var properties: [AnyNodeProperty] { get }
 }
 

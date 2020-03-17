@@ -11,7 +11,7 @@ import QuartzCore
 /**
  The base class for a child layer of CompositionContainer
  */
-class CompositionLayer: CALayer, KeypathSearchable {
+public class CompositionLayer: CALayer, KeypathSearchable {
   
   weak var layerDelegate: CompositionLayerDelegate?
   
@@ -130,15 +130,15 @@ class CompositionLayer: CALayer, KeypathSearchable {
   
   // MARK: Keypath Searchable
   
-  let keypathName: String
+  public let keypathName: String
   
-  var keypathProperties: [String : AnyNodeProperty] {
+  public var keypathProperties: [String : AnyNodeProperty] {
     return [:]
   }
   
-  final var childKeypaths: [KeypathSearchable]
+  public final var childKeypaths: [KeypathSearchable]
   
-  var keypathLayer: CALayer? {
+  public var keypathLayer: CALayer? {
     return contentsLayer
   }
   

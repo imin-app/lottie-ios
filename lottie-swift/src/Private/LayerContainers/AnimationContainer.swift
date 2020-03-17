@@ -14,12 +14,12 @@ import QuartzCore
  This layer holds a single composition container and allows for animation of
  the currentFrame property.
  */
-final class AnimationContainer: CALayer {
+public final class AnimationContainer: CALayer {
   
   /// The animatable Current Frame Property
   @NSManaged var currentFrame: CGFloat
   
-  var imageProvider: AnimationImageProvider {
+  public var imageProvider: AnimationImageProvider {
     get {
       return layerImageProvider.imageProvider
     }
@@ -28,11 +28,11 @@ final class AnimationContainer: CALayer {
     }
   }
   
-  func reloadImages() {
+  public func reloadImages() {
     layerImageProvider.reloadImages()
   }
   
-  var renderScale: CGFloat = 1 {
+  public var renderScale: CGFloat = 1 {
     didSet {
       animationLayers.forEach({ $0.renderScale = renderScale })
     }
@@ -41,16 +41,16 @@ final class AnimationContainer: CALayer {
   public var respectAnimationFrameRate: Bool = false
   
   /// Forces the view to update its drawing.
-  func forceDisplayUpdate() {
+  public func forceDisplayUpdate() {
     animationLayers.forEach( { $0.displayWithFrame(frame: currentFrame, forceUpdates: true) })
   }
   
-  func logHierarchyKeypaths() {
+  public func logHierarchyKeypaths() {
     print("Lottie: Logging Animation Keypaths")
     animationLayers.forEach({ $0.logKeypaths(for: nil) })
   }
   
-  func setValueProvider(_ valueProvider: AnyValueProvider, keypath: AnimationKeypath) {
+  public func setValueProvider(_ valueProvider: AnyValueProvider, keypath: AnimationKeypath) {
     for layer in animationLayers {
       if let foundProperties = layer.nodeProperties(for: keypath) {
         for property in foundProperties {
@@ -61,7 +61,7 @@ final class AnimationContainer: CALayer {
     }
   }
   
-  func getValue(for keypath: AnimationKeypath, atFrame: CGFloat?) -> Any? {
+  public func getValue(for keypath: AnimationKeypath, atFrame: CGFloat?) -> Any? {
     for layer in animationLayers {
       if let foundProperties = layer.nodeProperties(for: keypath),
         let first = foundProperties.first {
@@ -71,7 +71,7 @@ final class AnimationContainer: CALayer {
     return nil
   }
   
-  func layer(for keypath: AnimationKeypath) -> CALayer? {
+  public func layer(for keypath: AnimationKeypath) -> CALayer? {
     for layer in animationLayers {
       if let foundLayer = layer.layer(for: keypath) {
         return foundLayer
@@ -80,7 +80,7 @@ final class AnimationContainer: CALayer {
     return nil
   }
   
-  func animatorNodes(for keypath: AnimationKeypath) -> [AnimatorNode]? {
+  public func animatorNodes(for keypath: AnimationKeypath) -> [AnimatorNode]? {
     var results = [AnimatorNode]()
     for layer in animationLayers {
       if let nodes = layer.animatorNodes(for: keypath) {
@@ -93,14 +93,14 @@ final class AnimationContainer: CALayer {
     return results
   }
 
-  var textProvider: AnimationTextProvider {
+  public var textProvider: AnimationTextProvider {
     get { return layerTextProvider.textProvider }
     set { layerTextProvider.textProvider = newValue }
   }
   
-  var animationLayers: ContiguousArray<CompositionLayer>
-  fileprivate let layerImageProvider: LayerImageProvider
-  fileprivate let layerTextProvider: LayerTextProvider
+  public var animationLayers: ContiguousArray<CompositionLayer>
+  public  let layerImageProvider: LayerImageProvider
+  public  let layerTextProvider: LayerTextProvider
   
   init(animation: Animation, imageProvider: AnimationImageProvider, textProvider: AnimationTextProvider) {
     self.layerImageProvider = LayerImageProvider(imageProvider: imageProvider, assets: animation.assetLibrary?.imageAssets)
