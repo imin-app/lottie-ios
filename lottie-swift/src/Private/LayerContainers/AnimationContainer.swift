@@ -102,7 +102,7 @@ public final class AnimationContainer: CALayer {
   public  let layerImageProvider: LayerImageProvider
   public  let layerTextProvider: LayerTextProvider
   
-  init(animation: Animation, imageProvider: AnimationImageProvider, textProvider: AnimationTextProvider) {
+  public init(animation: Animation, imageProvider: AnimationImageProvider, textProvider: AnimationTextProvider) {
     self.layerImageProvider = LayerImageProvider(imageProvider: imageProvider, assets: animation.assetLibrary?.imageAssets)
     self.layerTextProvider = LayerTextProvider(textProvider: textProvider)
     self.animationLayers = []
