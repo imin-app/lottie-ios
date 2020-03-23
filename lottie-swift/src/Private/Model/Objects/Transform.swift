@@ -102,4 +102,13 @@ public final class Transform: Codable {
     // Opacity
     self.opacity = try container.decodeIfPresent(KeyframeGroup<Vector1D>.self, forKey: .opacity) ?? KeyframeGroup(Vector1D(100))
   }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.position, forKey: .position)
+        try container.encode(self.rotation, forKey: .rotation)
+        try container.encode(self.anchorPoint, forKey: .anchorPoint)
+        try container.encode(self.scale, forKey: .scale)
+        try container.encode(self.opacity, forKey: .opacity)
+    }
 }
