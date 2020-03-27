@@ -10,15 +10,15 @@ import Foundation
 public final class ImageAsset: Asset {
   
   /// Image name
-  public let name: String
+  public var name: String
   
   /// Image Directory
-  public let directory: String
+  public var directory: String
   
   /// Image Size
-  public let width: Double
+  public var width: Double
   
-  public let height: Double
+  public var height: Double
   
   enum CodingKeys : String, CodingKey {
     case name = "p"
