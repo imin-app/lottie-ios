@@ -203,7 +203,7 @@ final class TextCompositionLayer: CompositionLayer {
     textLayer.transform = CATransform3DIdentity
     textLayer.frame = CGRect(origin: .zero, size: size)
     textLayer.position = text.textFramePosition?.pointValue ?? CGPoint.zero
-    textLayer.transform = matrix
+//    textLayer.transform = matrix
     textLayer.string = baseAttributedString
     textLayer.alignmentMode = text.justification.caTextAlignement
   }
