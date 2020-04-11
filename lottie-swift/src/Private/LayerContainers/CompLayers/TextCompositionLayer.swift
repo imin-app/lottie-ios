@@ -177,8 +177,8 @@ final class TextCompositionLayer: CompositionLayer {
       textAnchor = CGPoint(x: size.width * 0.5, y: baselinePosition)
     }
     let anchor = CGPoint.zero//textAnchor + anchorPoint.pointValue
-    let normalizedAnchor = CGPoint(x: anchor.x.remap(fromLow: 0, fromHigh: size.width, toLow: 0, toHigh: 1),
-                                   y: anchor.y.remap(fromLow: 0, fromHigh: size.height, toLow: 0, toHigh: 1))
+    let normalizedAnchor = anchor//CGPoint(x: anchor.x.remap(fromLow: 0, fromHigh: size.width, toLow: 0, toHigh: 1),
+//                                   y: anchor.y.remap(fromLow: 0, fromHigh: size.height, toLow: 0, toHigh: 1))
     
     if textStrokeLayer.isHidden == false {
       if text.strokeOverFill ?? false {
