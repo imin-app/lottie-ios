@@ -121,6 +121,8 @@ public class CompositionLayer: CALayer, KeypathSearchable {
     
     if !(self is TextCompositionLayer) {
         contentsLayer.transform = transformNode.globalTransform
+    } else {
+        contentsLayer.transform = transformNode.localTransform
     }
     contentsLayer.opacity = transformNode.opacity
     contentsLayer.isHidden = !layerVisible
