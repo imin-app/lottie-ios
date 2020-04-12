@@ -107,12 +107,13 @@ class LayerTransformNode: AnimatorNode {
       position = .zero
     }
     
-    localTransform = CATransform3D.makeTransform(anchor: transformProperties.anchor.value.pointValue,
-                                                 position: position,
-                                                 scale: transformProperties.scale.value.sizeValue,
-                                                 rotation: transformProperties.rotation.value.cgFloatValue,
-                                                 skew: nil,
-                                                 skewAxis: nil)
+    localTransform = CATransform3D.makeTransform(
+                        anchor: CGPoint.zero,//transformProperties.anchor.value.pointValue,
+                        position: position,
+                        scale: transformProperties.scale.value.sizeValue,
+                        rotation: transformProperties.rotation.value.cgFloatValue,
+                        skew: nil,
+                        skewAxis: nil)
     
     if let parentNode = parentNode as? LayerTransformNode {
       globalTransform = CATransform3DConcat(localTransform, parentNode.globalTransform)

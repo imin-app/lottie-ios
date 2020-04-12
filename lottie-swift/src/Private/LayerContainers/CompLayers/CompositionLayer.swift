@@ -119,11 +119,11 @@ public class CompositionLayer: CALayer, KeypathSearchable {
       maskLayer?.updateWithFrame(frame: frame, forceUpdates: forceUpdates)
     }
     
-    if !(self is TextCompositionLayer) {
+//    if !(self is TextCompositionLayer) {
         contentsLayer.transform = transformNode.globalTransform
-    } else {
-        contentsLayer.transform = transformNode.localTransform
-    }
+//    } else {
+//        contentsLayer.transform = transformNode.localTransform
+//    }
     contentsLayer.opacity = transformNode.opacity
     contentsLayer.isHidden = !layerVisible
     layerDelegate?.frameUpdated(frame: frame)
