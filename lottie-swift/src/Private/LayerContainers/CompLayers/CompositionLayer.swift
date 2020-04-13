@@ -116,16 +116,13 @@ public class CompositionLayer: CALayer, KeypathSearchable {
 //        transformNode.transformProperties.anchor = NodeProperty(provider: KeyframeInterpolator(keyframes: anchor.keyframes))
 //
 //    }
-    if (self is TextCompositionLayer) {
-        if let anchor = (transformNode.transformProperties.properties[1] as? NodeProperty<Vector3D>)?.value {
-            transformNode.globalTransform.m41 -= CGFloat(anchor.x)
-            transformNode.globalTransform.m42 -= CGFloat(anchor.y)
-            print(anchor)
-        }
-        
-        transformNode.globalTransform.m41 -= CGFloat((transformNode.transformProperties.properties[1] as? NodeProperty<Vector3D>)?.value.x ?? 0)
-        transformNode.globalTransform.m42 -= CGFloat((transformNode.transformProperties.properties[1] as? NodeProperty<Vector3D>)?.value.y ?? 0)
-    }
+//    if (self is TextCompositionLayer) {
+//        if let anchor = (transformNode.transformProperties.properties[1] as? NodeProperty<Vector3D>)?.value {
+//            transformNode.globalTransform.m41 -= CGFloat(anchor.x)
+//            transformNode.globalTransform.m42 -= CGFloat(anchor.y)
+//            print(anchor)
+//        }
+//    }
     transformNode.updateTree(frame, forceUpdates: forceUpdates)
     
     if (self is TextCompositionLayer) {
@@ -134,9 +131,6 @@ public class CompositionLayer: CALayer, KeypathSearchable {
             transformNode.globalTransform.m42 -= CGFloat(anchor.y)
             print(anchor)
         }
-        
-        transformNode.globalTransform.m41 -= CGFloat((transformNode.transformProperties.properties[1] as? NodeProperty<Vector3D>)?.value.x ?? 0)
-        transformNode.globalTransform.m42 -= CGFloat((transformNode.transformProperties.properties[1] as? NodeProperty<Vector3D>)?.value.y ?? 0)
     }
 
     
