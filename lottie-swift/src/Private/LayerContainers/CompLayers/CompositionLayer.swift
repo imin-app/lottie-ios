@@ -119,7 +119,7 @@ public class CompositionLayer: CALayer, KeypathSearchable {
       maskLayer?.updateWithFrame(frame: frame, forceUpdates: forceUpdates)
     }
     
-    if !(self is TextCompositionLayer) {
+    if (self is TextCompositionLayer) {
         let anchor = KeyframeGroup(Vector3D(x: Double(0), y: 0, z: 0))
         transformNode.transformProperties.anchor = NodeProperty(provider: KeyframeInterpolator(keyframes: anchor.keyframes))
     }
