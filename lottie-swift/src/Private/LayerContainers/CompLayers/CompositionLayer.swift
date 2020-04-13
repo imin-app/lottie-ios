@@ -124,12 +124,12 @@ public class CompositionLayer: CALayer, KeypathSearchable {
       maskLayer?.updateWithFrame(frame: frame, forceUpdates: forceUpdates)
     }
     
-
+    if (self is TextCompositionLayer) {
+        transformNode.globalTransform.m41 -= CGFloat((transformNode.transformProperties.properties[1] as? NodeProperty<Vector3D>)?.value.x ?? 0)
+        transformNode.globalTransform.m42 -= CGFloat((transformNode.transformProperties.properties[1] as? NodeProperty<Vector3D>)?.value.y ?? 0)
+    }
         contentsLayer.transform = transformNode.globalTransform
-        if (self is TextCompositionLayer) {
-            contentsLayer.transform.m41 -= CGFloat((transformNode.transformProperties.properties[1] as? NodeProperty<Vector3D>)?.value.x ?? 0)
-            contentsLayer.transform.m42 -= CGFloat((transformNode.transformProperties.properties[1] as? NodeProperty<Vector3D>)?.value.y ?? 0)
-        }
+
 //    } else {
 //        contentsLayer.transform = transformNode.localTransform
 //    }
