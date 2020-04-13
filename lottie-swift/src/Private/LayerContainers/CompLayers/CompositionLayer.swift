@@ -127,8 +127,8 @@ public class CompositionLayer: CALayer, KeypathSearchable {
 
         contentsLayer.transform = transformNode.globalTransform
         if (self is TextCompositionLayer) {
-            contentsLayer.transform.m41 -= CGFloat(transformNode.transformProperties.anchor.value.x)
-            contentsLayer.transform.m42 -= CGFloat(transformNode.transformProperties.anchor.value.y)
+            contentsLayer.transform.m41 -= CGFloat((transformNode.transformProperties.properties[1] as? NodeProperty<Vector3D>)?.value.x ?? 0)
+            contentsLayer.transform.m42 -= CGFloat((transformNode.transformProperties.properties[1] as? NodeProperty<Vector3D>)?.value.y ?? 0)
         }
 //    } else {
 //        contentsLayer.transform = transformNode.localTransform
