@@ -11,25 +11,25 @@ import Foundation
 final class ShapeTransform: ShapeItem {
   
   /// Anchor Point
-  let anchor: KeyframeGroup<Vector3D>
+  var anchor: KeyframeGroup<Vector3D>
   
   /// Position
-  let position: KeyframeGroup<Vector3D>
+  var position: KeyframeGroup<Vector3D>
   
   /// Scale
-  let scale: KeyframeGroup<Vector3D>
+  var scale: KeyframeGroup<Vector3D>
   
   /// Rotation
-  let rotation: KeyframeGroup<Vector1D>
+  var rotation: KeyframeGroup<Vector1D>
   
   /// opacity
-  let opacity: KeyframeGroup<Vector1D>
+  var opacity: KeyframeGroup<Vector1D>
   
   /// Skew
-  let skew: KeyframeGroup<Vector1D>
+  var skew: KeyframeGroup<Vector1D>
   
   /// Skew Axis
-  let skewAxis: KeyframeGroup<Vector1D>
+  var skewAxis: KeyframeGroup<Vector1D>
   
   private enum CodingKeys : String, CodingKey {
     case anchor = "a"

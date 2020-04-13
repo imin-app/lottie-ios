@@ -59,7 +59,7 @@ final class LayerTransformProperties: NodePropertyMap, KeypathSearchable {
   
   let properties: [AnyNodeProperty]
   
-  let anchor: NodeProperty<Vector3D>
+    var anchor: NodeProperty<Vector3D>
   let scale: NodeProperty<Vector3D>
   let rotation: NodeProperty<Vector1D>
   let position: NodeProperty<Vector3D>?
@@ -107,8 +107,10 @@ class LayerTransformNode: AnimatorNode {
       position = .zero
     }
     
+    let anchor = transformProperties.anchor.value.pointValue
+    
     localTransform = CATransform3D.makeTransform(
-                        anchor: CGPoint.zero,//transformProperties.anchor.value.pointValue,
+                        anchor: anchor,
                         position: position,
                         scale: transformProperties.scale.value.sizeValue,
                         rotation: transformProperties.rotation.value.cgFloatValue,
