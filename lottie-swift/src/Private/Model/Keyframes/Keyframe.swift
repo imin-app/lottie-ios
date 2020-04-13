@@ -31,7 +31,7 @@ public struct Keyframe<T: Interpolatable> {
   public var spatialOutTangent: Vector3D?
   
   /// Initialize a value-only keyframe with no time data.
-  init(_ value: T,
+  public init(_ value: T,
        spatialInTangent: Vector3D? = nil,
        spatialOutTangent: Vector3D? = nil) {
     self.value = value
@@ -44,7 +44,7 @@ public struct Keyframe<T: Interpolatable> {
   }
   
   /// Initialize a keyframe
-  init(value: T,
+  public init(value: T,
        time: Double,
        isHold: Bool,
        inTangent: Vector2D?,
