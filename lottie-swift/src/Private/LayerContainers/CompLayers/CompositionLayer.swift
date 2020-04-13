@@ -111,6 +111,11 @@ public class CompositionLayer: CALayer, KeypathSearchable {
   }
   
   final func displayWithFrame(frame: CGFloat, forceUpdates: Bool) {
+    if (self is TextCompositionLayer) {
+        let anchor = KeyframeGroup(Vector3D(x: Double(0), y: 0, z: 0))
+        transformNode.transformProperties.anchor = NodeProperty(provider: KeyframeInterpolator(keyframes: anchor.keyframes))
+        
+    }
     transformNode.updateTree(frame, forceUpdates: forceUpdates)
     let layerVisible = frame.isInRangeOrEqual(inFrame, outFrame)
     /// Only update contents if current time is within the layers time bounds.
@@ -119,10 +124,7 @@ public class CompositionLayer: CALayer, KeypathSearchable {
       maskLayer?.updateWithFrame(frame: frame, forceUpdates: forceUpdates)
     }
     
-    if (self is TextCompositionLayer) {
-        let anchor = KeyframeGroup(Vector3D(x: Double(0), y: 0, z: 0))
-        transformNode.transformProperties.anchor = NodeProperty(provider: KeyframeInterpolator(keyframes: anchor.keyframes))
-    }
+
         contentsLayer.transform = transformNode.globalTransform
 //    } else {
 //        contentsLayer.transform = transformNode.localTransform
