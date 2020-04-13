@@ -114,7 +114,7 @@ public class CompositionLayer: CALayer, KeypathSearchable {
 //    if (self is TextCompositionLayer) {
 //        let anchor = KeyframeGroup(Vector3D(x: Double(0), y: 0, z: 0))
 //        transformNode.transformProperties.anchor = NodeProperty(provider: KeyframeInterpolator(keyframes: anchor.keyframes))
-//        
+//
 //    }
     transformNode.updateTree(frame, forceUpdates: forceUpdates)
     let layerVisible = frame.isInRangeOrEqual(inFrame, outFrame)
@@ -126,8 +126,10 @@ public class CompositionLayer: CALayer, KeypathSearchable {
     
 
         contentsLayer.transform = transformNode.globalTransform
-    contentsLayer.transform.m41 -= CGFloat(transformNode.transformProperties.anchor.value.x)
-    contentsLayer.transform.m42 -= CGFloat(transformNode.transformProperties.anchor.value.y)
+        if (self is TextCompositionLayer) {
+            contentsLayer.transform.m41 -= CGFloat(transformNode.transformProperties.anchor.value.x)
+            contentsLayer.transform.m42 -= CGFloat(transformNode.transformProperties.anchor.value.y)
+        }
 //    } else {
 //        contentsLayer.transform = transformNode.localTransform
 //    }
