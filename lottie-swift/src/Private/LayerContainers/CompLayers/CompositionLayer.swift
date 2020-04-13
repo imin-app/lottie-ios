@@ -23,6 +23,8 @@ public class CompositionLayer: CALayer, KeypathSearchable {
   
   let matteType: MatteType?
   
+  var removeAnchorNeeded = true
+    
   var renderScale: CGFloat = 1 {
     didSet {
       self.updateRenderScale()
@@ -127,12 +129,10 @@ public class CompositionLayer: CALayer, KeypathSearchable {
     
     if (self is TextCompositionLayer) {
 //        if let anchor = (transformNode.transformProperties.properties[1] as? NodeProperty<Vector3D>)?.value {
-        if let anchor = transformNode.transformProperties.position?.value {
+        if removeAnchorNeeded, let anchor = transformNode.transformProperties.position?.value {
             transformNode.globalTransform.m41 -= CGFloat(anchor.x)
             transformNode.globalTransform.m42 -= CGFloat(anchor.y)
-            print("\(anchor) - anchor")
-            print("\(transformNode.globalTransform.m41) - x")
-            print("\(transformNode.globalTransform.m42) - y")
+            removeAnchorNeeded = false
         }
     }
 
