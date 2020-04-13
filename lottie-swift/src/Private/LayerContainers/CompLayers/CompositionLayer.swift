@@ -130,9 +130,9 @@ public class CompositionLayer: CALayer, KeypathSearchable {
         if let anchor = transformNode.transformProperties.position?.value {
             transformNode.globalTransform.m41 -= CGFloat(anchor.x)
             transformNode.globalTransform.m42 -= CGFloat(anchor.y)
-            print(anchor + " - anchor")
-            print(transformNode.globalTransform.m41 + " - x")
-            print(transformNode.globalTransform.m42 + " - y")
+            print("\(anchor) - anchor")
+            print("\(transformNode.globalTransform.m41) - x")
+            print("\(transformNode.globalTransform.m42) - y")
         }
     }
 
