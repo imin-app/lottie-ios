@@ -49,7 +49,7 @@ public struct Vector2D: Codable {
   public var x: Double
   public var y: Double
   
-  init(x: Double, y: Double) {
+  public init(x: Double, y: Double) {
     self.x = x
     self.y = y
   }
@@ -93,7 +93,7 @@ extension Vector2D {
 }
 
 extension CGPoint {
-  var vector2dValue: Vector2D {
+  public var vector2dValue: Vector2D {
     return Vector2D(x: Double(x), y: Double(y))
   }
 }
