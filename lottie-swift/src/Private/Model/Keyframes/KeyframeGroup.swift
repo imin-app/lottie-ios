@@ -88,10 +88,13 @@ public final class KeyframeGroup<T>: Codable where T: Codable, T: Interpolatable
       try container.encode(keyframe.value, forKey: .keyframeData)
     } else {
       var keyframeContainer = container.nestedUnkeyedContainer(forKey: .keyframeData)
-      
-      for i in 1..<keyframes.endIndex {
-        let keyframe = keyframes[i-1]
-        let nextKeyframe = keyframes[i]
+      var encodedKeyframes = keyframes
+      if let lastElement = encodedKeyframes.last {
+          encodedKeyframes.append(lastElement)
+      }
+      for i in 1..<encodedKeyframes.endIndex {
+        let keyframe = encodedKeyframes[i-1]
+        let nextKeyframe = encodedKeyframes[i]
         let keyframeData = KeyframeData<T>(startValue: keyframe.value,
                                                   endValue: nextKeyframe.value,
                                                   time: Double(keyframe.time),
