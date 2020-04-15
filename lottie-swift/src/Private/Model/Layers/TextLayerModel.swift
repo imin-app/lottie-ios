@@ -9,7 +9,8 @@ import Foundation
 
 /// A layer that holds text.
 public final class TextLayerModel: LayerModel {
-
+    
+  public var readyForRender: Bool = false
   /// The text for the layer
   public var text: KeyframeGroup<TextDocument>
   

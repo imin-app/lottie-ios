@@ -60,6 +60,7 @@ final class TextCompositionLayer: CompositionLayer {
   var textProvider: AnimationTextProvider
   
   init(textLayer: TextLayerModel, textProvider: AnimationTextProvider) {
+
     var rootNode: TextAnimatorNode?
     for animator in textLayer.animators {
       rootNode = TextAnimatorNode(parentNode: rootNode, textAnimator: animator)
@@ -81,6 +82,7 @@ final class TextCompositionLayer: CompositionLayer {
     self.textStrokeLayer.masksToBounds = false
     self.textLayer.isWrapped = true
     self.textStrokeLayer.isWrapped = true
+    self.removeAnchorNeeded = !textLayer.readyForRender
   }
   
   required init?(coder aDecoder: NSCoder) {
