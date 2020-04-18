@@ -105,7 +105,7 @@ final class TextCompositionLayer: CompositionLayer {
     super.init(layer: layer)
   }
   
-  override func displayContentsWithFrame(frame: CGFloat, forceUpdates: Bool) {
+    override func displayContentsWithFrame(frame: CGFloat, forceUpdates: Bool) {
     guard let textDocument = textDocument else { return }
     
     textLayer.contentsScale = self.renderScale
@@ -208,7 +208,6 @@ final class TextCompositionLayer: CompositionLayer {
 //    textLayer.transform = matrix
 //    textLayer.string = baseAttributedString
     
-    if #available(iOSApplicationExtension 10.0, *) {
         let renderer = UIGraphicsImageRenderer(size: textLayer.bounds.size)
         let img = renderer.image { ctx in
             baseAttributedString.draw(with: textLayer.bounds, context: nil)
@@ -216,9 +215,7 @@ final class TextCompositionLayer: CompositionLayer {
         let imageSubLayer = CALayer()
         imageSubLayer.contents = img.cgImage
         textLayer.addSublayer(imageSubLayer)
-    } else {
-        // Fallback on earlier versions
-    }
+
     
     
     textLayer.alignmentMode = text.justification.caTextAlignement
