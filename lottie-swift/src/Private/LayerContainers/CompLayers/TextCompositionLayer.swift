@@ -206,7 +206,21 @@ final class TextCompositionLayer: CompositionLayer {
     textLayer.frame = CGRect(origin: .zero, size: size)
     textLayer.position = text.textFramePosition?.pointValue ?? CGPoint.zero
 //    textLayer.transform = matrix
-    textLayer.string = baseAttributedString
+//    textLayer.string = baseAttributedString
+    
+    if #available(iOSApplicationExtension 10.0, *) {
+        let renderer = UIGraphicsImageRenderer(size: textLayer.bounds.size)
+        let img = renderer.image { ctx in
+            baseAttributedString.draw(with: textLayer.bounds, context: nil)
+        }
+        let imageSubLayer = CALayer()
+        imageSubLayer.contents = img.cgImage
+        textLayer.addSublayer(imageSubLayer)
+    } else {
+        // Fallback on earlier versions
+    }
+    
+    
     textLayer.alignmentMode = text.justification.caTextAlignement
   }
   
