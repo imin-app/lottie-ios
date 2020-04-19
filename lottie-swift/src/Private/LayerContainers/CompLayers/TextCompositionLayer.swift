@@ -52,15 +52,12 @@ final class TextCompositionLayer: CompositionLayer {
   
   let rootNode: TextAnimatorNode?
   let textDocument: KeyframeInterpolator<TextDocument>?
-  let interpolatableAnchorPoint: KeyframeInterpolator<Vector3D>?
-  let interpolatableScale: KeyframeInterpolator<Vector3D>?
   
   let textLayer: DisabledTextLayer = DisabledTextLayer()
   let textStrokeLayer: DisabledTextLayer = DisabledTextLayer()
   var textProvider: AnimationTextProvider
   
   init(textLayer: TextLayerModel, textProvider: AnimationTextProvider) {
-
     var rootNode: TextAnimatorNode?
     for animator in textLayer.animators {
       rootNode = TextAnimatorNode(parentNode: rootNode, textAnimator: animator)
@@ -70,11 +67,6 @@ final class TextCompositionLayer: CompositionLayer {
     
     self.textProvider = textProvider
     
-    // TODO: this has to be somewhere that can be interpolated
-    // TODO: look for inspiration from other composite layer
-    self.interpolatableAnchorPoint = KeyframeInterpolator(keyframes: textLayer.transform.anchorPoint.keyframes)
-    self.interpolatableScale = KeyframeInterpolator(keyframes: textLayer.transform.scale.keyframes)
-    
     super.init(layer: textLayer, size: .zero)
     contentsLayer.addSublayer(self.textLayer)
     contentsLayer.addSublayer(self.textStrokeLayer)
@@ -82,7 +74,6 @@ final class TextCompositionLayer: CompositionLayer {
     self.textStrokeLayer.masksToBounds = false
     self.textLayer.isWrapped = true
     self.textStrokeLayer.isWrapped = true
-    self.removeAnchorNeeded = !textLayer.readyForRender
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -99,13 +90,10 @@ final class TextCompositionLayer: CompositionLayer {
     
     self.textProvider = DefaultTextProvider()
     
-    self.interpolatableAnchorPoint = nil
-    self.interpolatableScale = nil
-    
     super.init(layer: layer)
   }
   
-    override func displayContentsWithFrame(frame: CGFloat, forceUpdates: Bool) {
+  override func displayContentsWithFrame(frame: CGFloat, forceUpdates: Bool) {
     guard let textDocument = textDocument else { return }
     
     textLayer.contentsScale = self.renderScale
@@ -116,9 +104,7 @@ final class TextCompositionLayer: CompositionLayer {
     guard documentUpdate == true || animatorUpdate == true else { return }
     
     let text = textDocument.value(frame: frame) as! TextDocument
-    let anchorPoint = interpolatableAnchorPoint?.value(frame: frame) as! Vector3D
-    
-    interpolatableScale?.value(frame: frame)
+
     rootNode?.rebuildOutputs(frame: frame)
     
     let fillColor = rootNode?.textOutputNode.fillColor ?? text.fillColorData.cgColorValue
@@ -169,21 +155,17 @@ final class TextCompositionLayer: CompositionLayer {
     }
     
     let baselinePosition = CTFontGetAscent(ctFont)
-    let textAnchor: CGPoint
-    switch text.justification {
-    case .left:
-      textAnchor = CGPoint(x: 0, y: baselinePosition)
-    case .right:
-      textAnchor = CGPoint(x: size.width, y: baselinePosition)
-    case .center:
-      textAnchor = CGPoint(x: size.width * 0.5, y: baselinePosition)
-    }
-
+    let textAnchor = CGPoint(x: 0, y: baselinePosition)
+//    switch text.justification {
+//    case .left:
+//      textAnchor = CGPoint(x: 0, y: baselinePosition)
+//    case .right:
+//      textAnchor = CGPoint(x: size.width, y: baselinePosition)
+//    case .center:
+//      textAnchor = CGPoint(x: size.width * 0.5, y: baselinePosition)
+//    }
     let normalizedAnchor = CGPoint(x: textAnchor.x.remap(fromLow: 0, fromHigh: size.width, toLow: 0, toHigh: 1),
-                                       y: textAnchor.y.remap(fromLow: 0, fromHigh: size.height, toLow: 0, toHigh: 1))
-        
-//        let normalizedAnchor = anchor//CGPoint(x: anchor.x.remap(fromLow: 0, fromHigh: size.width, toLow: 0, toHigh: 1),
-//                                   y: anchor.y.remap(fromLow: 0, fromHigh: size.height, toLow: 0, toHigh: 1))
+                                   y: textAnchor.y.remap(fromLow: 0, fromHigh: size.height, toLow: 0, toHigh: 1))
     
     if textStrokeLayer.isHidden == false {
       if text.strokeOverFill ?? false {
@@ -208,12 +190,8 @@ final class TextCompositionLayer: CompositionLayer {
     textLayer.transform = CATransform3DIdentity
     textLayer.frame = CGRect(origin: .zero, size: size)
     textLayer.position = text.textFramePosition?.pointValue ?? CGPoint.zero
-//    textLayer.transform = matrix
-//    textLayer.string = baseAttributedString
-    
-        let label = UILabel(frame: textLayer.bounds)
-        label.attributedText = attributedString
-        textLayer.addSublayer(label.layer)
+    textLayer.transform = matrix
+    textLayer.string = baseAttributedString
     textLayer.alignmentMode = text.justification.caTextAlignement
   }
   
