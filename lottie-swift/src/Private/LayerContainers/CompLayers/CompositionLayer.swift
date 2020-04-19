@@ -127,14 +127,13 @@ public class CompositionLayer: CALayer, KeypathSearchable {
 //    }
     transformNode.updateTree(frame, forceUpdates: forceUpdates)
     
-    if (self is TextCompositionLayer) {
-//        if let anchor = (transformNode.transformProperties.properties[1] as? NodeProperty<Vector3D>)?.value {
-        if removeAnchorNeeded, let anchor = transformNode.transformProperties.position?.value {
-            transformNode.globalTransform.m41 -= CGFloat(anchor.x)
-            transformNode.globalTransform.m42 -= CGFloat(anchor.y)
-            removeAnchorNeeded = false
-        }
-    }
+//    if (self is TextCompositionLayer) {
+//        if removeAnchorNeeded, let anchor = transformNode.transformProperties.position?.value {
+//            transformNode.globalTransform.m41 -= CGFloat(anchor.x)
+//            transformNode.globalTransform.m42 -= CGFloat(anchor.y)
+//            removeAnchorNeeded = false
+//        }
+//    }
 
     
     let layerVisible = frame.isInRangeOrEqual(inFrame, outFrame)
