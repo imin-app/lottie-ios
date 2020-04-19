@@ -155,15 +155,15 @@ final class TextCompositionLayer: CompositionLayer {
     }
     
     let baselinePosition = CTFontGetAscent(ctFont)
-    let textAnchor = CGPoint(x: 0, y: baselinePosition)
-//    switch text.justification {
-//    case .left:
-//      textAnchor = CGPoint(x: 0, y: baselinePosition)
-//    case .right:
-//      textAnchor = CGPoint(x: size.width, y: baselinePosition)
-//    case .center:
-//      textAnchor = CGPoint(x: size.width * 0.5, y: baselinePosition)
-//    }
+    var textAnchor = CGPoint(x: 0, y: baselinePosition)
+    switch text.justification {
+    case .left:
+      textAnchor = CGPoint(x: 0, y: baselinePosition)
+    case .right:
+      textAnchor = CGPoint(x: size.width, y: baselinePosition)
+    case .center:
+      textAnchor = CGPoint(x: size.width * 0.5, y: baselinePosition)
+    }
     let normalizedAnchor = CGPoint(x: textAnchor.x.remap(fromLow: 0, fromHigh: size.width, toLow: 0, toHigh: 1),
                                    y: textAnchor.y.remap(fromLow: 0, fromHigh: size.height, toLow: 0, toHigh: 1))
     
