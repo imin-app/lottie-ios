@@ -23,7 +23,7 @@ public final class PreCompLayerModel: LayerModel {
   /// Precomp Height
   public var height: Double
   
-  public var viewTransform: CGAffineTransform = .identity
+  public var viewTransform: CGAffineTransform? = .identity
 
   private enum CodingKeys : String, CodingKey {
     case referenceID = "refId"
@@ -39,7 +39,7 @@ public final class PreCompLayerModel: LayerModel {
     self.timeRemapping = try container.decodeIfPresent(KeyframeGroup<Vector1D>.self, forKey: .timeRemapping)
     self.width = try container.decode(Double.self, forKey: .width)
     self.height = try container.decode(Double.self, forKey: .height)
-    self.viewTransform = try container.decode(CGAffineTransform.self, forKey: .viewTramsform)
+    self.viewTransform = try? container.decode(CGAffineTransform.self, forKey: .viewTramsform)
     try super.init(from: decoder)
   }
   
