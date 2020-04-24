@@ -6,13 +6,11 @@
 //
 
 import Foundation
-import UIKit
 
 public final class PrecompAsset: Asset {
   
   /// Layers of the precomp
   public var layers: [LayerModel]
-  public var viewTransform: CGAffineTransform = .identity
     
   enum CodingKeys : String, CodingKey {
     case layers = "layers"

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 /// A layer that holds another animation composition.
 public final class PreCompLayerModel: LayerModel {
@@ -22,6 +23,8 @@ public final class PreCompLayerModel: LayerModel {
   /// Precomp Height
   public var height: Double
   
+  public var viewTransform: CGAffineTransform = .identity
+
   private enum CodingKeys : String, CodingKey {
     case referenceID = "refId"
     case timeRemapping = "tm"
