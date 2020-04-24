@@ -30,6 +30,7 @@ public final class PreCompLayerModel: LayerModel {
     case timeRemapping = "tm"
     case width = "w"
     case height = "h"
+      case viewTramsform = "vtr"
   }
   
   required init(from decoder: Decoder) throws {
@@ -38,6 +39,7 @@ public final class PreCompLayerModel: LayerModel {
     self.timeRemapping = try container.decodeIfPresent(KeyframeGroup<Vector1D>.self, forKey: .timeRemapping)
     self.width = try container.decode(Double.self, forKey: .width)
     self.height = try container.decode(Double.self, forKey: .height)
+    self.viewTransform = try container.decode(CGAffineTransform.self, forKey: .viewTramsform)
     try super.init(from: decoder)
   }
   
@@ -48,6 +50,7 @@ public final class PreCompLayerModel: LayerModel {
     try container.encode(timeRemapping, forKey: .timeRemapping)
     try container.encode(width, forKey: .width)
     try container.encode(height, forKey: .height)
+    try container.encode(viewTransform, forKey: .viewTramsform)
   }
   
 }
