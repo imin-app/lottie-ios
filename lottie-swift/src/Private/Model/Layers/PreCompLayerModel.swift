@@ -24,6 +24,7 @@ public final class PreCompLayerModel: LayerModel {
   public var height: Double
   
   public var viewTransform: CGAffineTransform? = .identity
+  public var viewTranslate: CGPoint? = .zero
 
   private enum CodingKeys : String, CodingKey {
     case referenceID = "refId"
@@ -31,6 +32,7 @@ public final class PreCompLayerModel: LayerModel {
     case width = "w"
     case height = "h"
       case viewTramsform = "vtr"
+      case viewTranslate = "vtrslt"
   }
   
   required init(from decoder: Decoder) throws {
@@ -40,6 +42,7 @@ public final class PreCompLayerModel: LayerModel {
     self.width = try container.decode(Double.self, forKey: .width)
     self.height = try container.decode(Double.self, forKey: .height)
     self.viewTransform = try? container.decode(CGAffineTransform.self, forKey: .viewTramsform)
+    self.viewTranslate = try? container.decode(CGPoint.self, forKey: .viewTranslate)
     try super.init(from: decoder)
   }
   
@@ -51,6 +54,7 @@ public final class PreCompLayerModel: LayerModel {
     try container.encode(width, forKey: .width)
     try container.encode(height, forKey: .height)
     try container.encode(viewTransform, forKey: .viewTramsform)
+    try container.encode(viewTranslate, forKey: .viewTranslate)
   }
   
 }
