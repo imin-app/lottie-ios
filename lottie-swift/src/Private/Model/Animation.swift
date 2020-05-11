@@ -57,11 +57,11 @@ public final class Animation: Codable {
   let markers: [Marker]?
   let markerMap: [String : Marker]?
   
-    var colorSelectedByIndex: Int?
-    var transparencySelectedBySlider: Float?
-    
-    var colorSelectedByPicker: Float?
-    var brightnessSelectedByPicker: Float?
+   public var colorSelectedByIndex: Int?
+   public var transparencySelectedBySlider: Float?
+   
+   public var colorSelectedByPicker: Float?
+   public var brightnessSelectedByPicker: Float?
 
     
   /// Return all marker names, in order, or an empty list if none are specified
