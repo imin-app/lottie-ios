@@ -57,6 +57,13 @@ public final class Animation: Codable {
   let markers: [Marker]?
   let markerMap: [String : Marker]?
   
+    var colorSelectedByIndex: Int?
+    var transparencySelectedBySlider: Float?
+    
+    var colorSelectedByPicker: Float?
+    var brightnessSelectedByPicker: Float?
+
+    
   /// Return all marker names, in order, or an empty list if none are specified
   public var markerNames: [String] {
     guard let markers = markers else { return [] }
@@ -76,6 +83,10 @@ public final class Animation: Codable {
     case fonts = "fonts"
     case assetLibrary = "assets"
     case markers = "markers"
+      case colorSelectedByIndex = "colorSelectedByIndex"
+      case transparencySelectedBySlider = "transparencySelectedBySlider"
+      case colorSelectedByPicker = "colorSelectedByPicker"
+      case brightnessSelectedByPicker = "brightnessSelectedByPicker"
   }
   
   required public init(from decoder: Decoder) throws {
@@ -93,6 +104,12 @@ public final class Animation: Codable {
     self.assetLibrary = try container.decodeIfPresent(AssetLibrary.self, forKey: .assetLibrary)
     self.markers = try container.decodeIfPresent([Marker].self, forKey: .markers)
     
+    self.colorSelectedByIndex = try container.decodeIfPresent(Int.self, forKey: .colorSelectedByIndex)
+    self.transparencySelectedBySlider = try container.decodeIfPresent(Float.self, forKey: .transparencySelectedBySlider)
+
+    self.colorSelectedByPicker = try container.decodeIfPresent(Float.self, forKey: .colorSelectedByPicker)
+    self.brightnessSelectedByPicker = try container.decodeIfPresent(Float.self, forKey: .brightnessSelectedByPicker)
+
     if let markers = markers {
       var markerMap: [String : Marker] = [:]
       for marker in markers {
