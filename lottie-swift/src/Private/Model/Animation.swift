@@ -123,6 +123,10 @@ public final class Animation: Codable {
     } else {
       self.markerMap = nil
     }
+    
+    if self.stickers == nil {
+        self.stickers = []
+    }
   }
 
 }
