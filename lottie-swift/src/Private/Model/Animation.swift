@@ -46,7 +46,9 @@ public final class Animation: Codable {
   
   /// The list of glyphs used for text rendering
   let glyphs: [Glyph]?
-  
+    
+  let stickers: [StickerLayerModel]?
+
   /// The list of fonts used for text rendering
   let fonts: FontList?
   
@@ -80,6 +82,7 @@ public final class Animation: Codable {
     case height = "h"
     case layers = "layers"
     case glyphs = "chars"
+    case stickers = "stickers"
     case fonts = "fonts"
     case assetLibrary = "assets"
     case markers = "markers"
@@ -100,6 +103,7 @@ public final class Animation: Codable {
     self.height = try container.decode(Int.self, forKey: .height)
     self.layers = try container.decode([LayerModel].self, ofFamily: LayerType.self, forKey: .layers)
     self.glyphs = try container.decodeIfPresent([Glyph].self, forKey: .glyphs)
+    self.stickers = try container.decodeIfPresent([StickerLayerModel].self, forKey: .stickers)
     self.fonts = try container.decodeIfPresent(FontList.self, forKey: .fonts)
     self.assetLibrary = try container.decodeIfPresent(AssetLibrary.self, forKey: .assetLibrary)
     self.markers = try container.decodeIfPresent([Marker].self, forKey: .markers)
