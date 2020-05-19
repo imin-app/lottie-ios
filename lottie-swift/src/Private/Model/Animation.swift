@@ -47,7 +47,7 @@ public final class Animation: Codable {
   /// The list of glyphs used for text rendering
   let glyphs: [Glyph]?
     
-  let stickers: [StickerLayerModel]?
+  public var stickers: [StickerLayerModel]?
 
   /// The list of fonts used for text rendering
   let fonts: FontList?
