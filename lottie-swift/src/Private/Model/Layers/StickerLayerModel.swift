@@ -26,12 +26,12 @@ public final class StickerLayerModel: Codable {
       case viewBounds = "viewBounds"
   }
   
-    init(url: String, transform: CGAffineTransform, position: CGPoint, bounds: CGRect) {
+  public init(url: String, transform: CGAffineTransform, position: CGPoint, bounds: CGRect) {
         stickerUrl = url
         viewTransform = transform
         viewPosition = position
         viewBounds = bounds
-    }
+  }
     
   required public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: StickerLayerModel.CodingKeys.self)
