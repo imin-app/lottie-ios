@@ -879,7 +879,7 @@ final public class AnimationView: LottieView {
   }
   
   /// Updates an in flight animation.
-  fileprivate func updateInFlightAnimation() {
+  public func updateInFlightAnimation() {
     guard let animationContext = animationContext else { return }
     
     guard animationContext.closure.animationState != .complete else {
