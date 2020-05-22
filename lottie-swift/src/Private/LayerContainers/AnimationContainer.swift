@@ -15,7 +15,7 @@ import QuartzCore
  the currentFrame property.
  */
 public final class AnimationContainer: CALayer {
-  
+  public var isForRender = false
   /// The animatable Current Frame Property
   @NSManaged public var currentFrame: CGFloat
   
@@ -182,7 +182,7 @@ public final class AnimationContainer: CALayer {
   }
   
   public override func display() {
-    guard Thread.isMainThread else { return }
+    guard Thread.isMainThread && !isForRender else { return }
     var newFrame: CGFloat = self.presentation()?.currentFrame ?? self.currentFrame
     if respectAnimationFrameRate {
       newFrame = floor(newFrame)
